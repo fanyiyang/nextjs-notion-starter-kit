@@ -26,7 +26,7 @@ export default siteConfig({
   // default notion icon and cover images for site-wide consistency (optional)
   // page-specific values will override these site-wide defaults
   defaultPageIcon: 'https://www.fanyiyang.top/page-icon.png',
-  defaultPageCover: 'https://www.fanyiyang.top/page-cover.jpg',
+  defaultPageCover: 'https://www.fanyiyang.top/DSC04678.JPG',
   defaultPageCoverPosition: 0.5,
 
   // whether or not to enable support for LQIP preview images (optional)
