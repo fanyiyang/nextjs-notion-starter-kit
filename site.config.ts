@@ -19,7 +19,7 @@ export default siteConfig({
   // social usernames (optional)
   twitter: 'yiyang',
   github: 'fanyiyang',
-  linkedin: 'yiyang-fan-b67175289/',
+  linkedin: 'yiyang-fan-b67175289',
   // newsletter: '#', // optional newsletter URL
   // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
 
