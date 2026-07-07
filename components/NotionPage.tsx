@@ -13,6 +13,7 @@ import { useSearchParam } from 'react-use'
 
 import type * as types from '@/lib/types'
 import * as config from '@/lib/config'
+import { getPageFavicon } from '@/lib/get-page-favicon'
 import { mapImageUrl } from '@/lib/map-image-url'
 import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
@@ -241,6 +242,8 @@ export function NotionPage({
     getPageProperty<string>('Description', block, recordMap) ||
     config.description
 
+  const favicon = getPageFavicon(block, recordMap)
+
   return (
     <>
       <PageHead
@@ -250,6 +253,7 @@ export function NotionPage({
         description={socialDescription}
         image={socialImage}
         url={canonicalPageUrl}
+        favicon={favicon}
       />
 
       {isLiteMode && <BodyClassName className='notion-lite' />}
