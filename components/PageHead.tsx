@@ -10,12 +10,14 @@ export function PageHead({
   description,
   pageId,
   image,
-  url
+  url,
+  favicon
 }: types.PageProps & {
   title?: string
   description?: string
   image?: string
   url?: string
+  favicon?: string | null
 }) {
   const rssFeedUrl = `${config.host}/feed`
 
@@ -35,6 +37,19 @@ export function PageHead({
 
       <meta name='apple-mobile-web-app-capable' content='yes' />
       <meta name='apple-mobile-web-app-status-bar-style' content='black' />
+
+      <link rel='shortcut icon' href='/favicon.ico' key='shortcut-icon' />
+      {favicon ? (
+        <link rel='icon' href={favicon} key='favicon' />
+      ) : (
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/favicon.png'
+          key='favicon'
+        />
+      )}
 
       <meta
         name='theme-color'

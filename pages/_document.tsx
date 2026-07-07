@@ -7,14 +7,8 @@ export default class MyDocument extends Document {
       <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
         <Html lang='en'>
           <Head>
-            <link rel='shortcut icon' href='/favicon.ico' />
-            <link
-              rel='icon'
-              type='image/png'
-              sizes='32x32'
-              href='favicon.png'
-            />
-
+            {/* favicons are rendered per-page by PageHead so they can use the
+                page's Notion icon */}
             <link rel='manifest' href='/manifest.json' />
           </Head>
 

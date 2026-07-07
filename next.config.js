@@ -8,6 +8,13 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 export default withBundleAnalyzer({
   staticPageGenerationTimeout: 300,
+  rewrites: async () => [
+    {
+      // the manifest is generated from `site.config.ts` by `pages/api/manifest.ts`
+      source: '/manifest.json',
+      destination: '/api/manifest'
+    }
+  ],
   images: {
     remotePatterns: [
       {
