@@ -4,7 +4,12 @@ import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { type PageBlock } from 'notion-types'
-import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
+import {
+  formatDate,
+  getBlockTitle,
+  getBlockValue,
+  getPageProperty
+} from 'notion-utils'
 import * as React from 'react'
 import BodyClassName from 'react-body-classname'
 import { type NotionComponents, NotionRenderer } from 'react-notion-x'
@@ -183,7 +188,7 @@ export function NotionPage({
   }, [site, recordMap, lite])
 
   const keys = Object.keys(recordMap?.block || {})
-  const block = recordMap?.block?.[keys[0]]?.value
+  const block = getBlockValue(recordMap?.block?.[keys[0]])
 
   // const isRootPage =
   //   parsePageId(block?.id) === parsePageId(site?.rootNotionPageId)
