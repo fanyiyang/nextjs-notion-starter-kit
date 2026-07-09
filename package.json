@@ -41,7 +41,7 @@
     "fathom-client": "^3.4.1",
     "ky": "^1.7.2",
     "lqip-modern": "^2.1.0",
-    "next": "^15.0.2",
+    "next": "^15.5.20",
     "notion-client": "^7.10.0",
     "notion-types": "^7.10.0",
     "notion-utils": "^7.10.0",
@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@fisch0920/eslint-config": "^1.4.0",
-    "@next/bundle-analyzer": "^15.0.2",
+    "@next/bundle-analyzer": "^15.5.20",
     "@types/node": "^22.8.6",
     "@types/react": "^18.0.21",
     "cross-env": "^7.0.2",
