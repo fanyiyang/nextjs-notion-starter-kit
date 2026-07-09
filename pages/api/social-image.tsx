@@ -5,13 +5,19 @@ import { type NextRequest } from 'next/server'
 import { api, apiHost, rootNotionPageId } from '@/lib/config'
 import { type NotionPageInfo } from '@/lib/types'
 
-const interRegularFontP = ky(
-  new URL('../../public/fonts/Inter-Regular.ttf', import.meta.url)
-).arrayBuffer()
+// the font files are fetched from the deployment's own static assets at
+// runtime instead of being bundled via `import.meta.url`, which pushed the
+// edge function over Vercel's 1 MB size limit
+let interFontsP: Promise<[ArrayBuffer, ArrayBuffer]> | undefined
 
-const interBoldFontP = ky(
-  new URL('../../public/fonts/Inter-SemiBold.ttf', import.meta.url)
-).arrayBuffer()
+function getInterFonts(): Promise<[ArrayBuffer, ArrayBuffer]> {
+  interFontsP ??= Promise.all([
+    ky(`${apiHost}/fonts/Inter-Regular.ttf`).arrayBuffer(),
+    ky(`${apiHost}/fonts/Inter-SemiBold.ttf`).arrayBuffer()
+  ])
+
+  return interFontsP
+}
 
 export const config = {
   runtime: 'edge'
@@ -37,10 +43,7 @@ export default async function OGImage(req: NextRequest) {
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
   console.log(pageInfo)
 
-  const [interRegularFont, interBoldFont] = await Promise.all([
-    interRegularFontP,
-    interBoldFontP
-  ])
+  const [interRegularFont, interBoldFont] = await getInterFonts()
 
   return new ImageResponse(
     (
