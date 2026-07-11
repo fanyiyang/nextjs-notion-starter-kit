@@ -16,6 +16,9 @@ export default siteConfig({
   // open graph metadata (optional)
   description: "Yiyang Fan's personal blog",
 
+  // primary content language, used for <html lang> and the RSS feed (optional)
+  language: 'zh',
+
   // social usernames (optional)
   twitter: 'yiyang',
   github: 'fanyiyang',
@@ -31,7 +34,10 @@ export default siteConfig({
   defaultPageCoverPosition: 0.5,
 
   // whether or not to enable support for LQIP preview images (optional)
-  isPreviewImageSupportEnabled: true,
+  // NOTE: disabled because there's no redis cache configured; without one,
+  // every page regeneration recomputes all preview images from scratch, which
+  // slows down ISR and hammers Notion's API. Re-enable together with redis.
+  isPreviewImageSupportEnabled: false,
 
   // whether or not redis is enabled for caching generated preview images (optional)
   // NOTE: if you enable redis, you need to set the `REDIS_HOST` and `REDIS_PASSWORD`

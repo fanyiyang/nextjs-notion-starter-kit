@@ -9,6 +9,7 @@
   "engines": {
     "node": "22.x"
   },
+  "packageManager": "pnpm@10.33.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -35,7 +36,6 @@
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.6.3",
     "classnames": "^2.5.1",
-    "date-fns": "^2.30.0",
     "expiry-map": "^2.0.0",
     "fathom-client": "^3.4.1",
     "ky": "^1.7.2",
