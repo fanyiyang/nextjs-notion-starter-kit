@@ -13,6 +13,12 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   try {
     const props = await resolveNotionPage(domain, rawPageId)
 
+    if ('error' in props && props.error?.statusCode === 404) {
+      // serve a real 404 (with the correct status code) instead of rendering
+      // an error page with a 200
+      return { notFound: true, revalidate: 60 }
+    }
+
     return { props, revalidate: 10 }
   } catch (err) {
     console.error('page error', domain, rawPageId, err)
