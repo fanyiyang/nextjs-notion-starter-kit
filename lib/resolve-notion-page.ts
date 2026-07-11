@@ -1,5 +1,5 @@
 import { type ExtendedRecordMap } from 'notion-types'
-import { parsePageId } from 'notion-utils'
+import { getBlockValue, getPageProperty, parsePageId } from 'notion-utils'
 
 import * as acl from './acl'
 import { environment, pageUrlAdditions, pageUrlOverrides, site } from './config'
@@ -84,6 +84,23 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
 
     console.log(site)
     recordMap = await getPage(pageId)
+  }
+
+  // pages explicitly marked non-public via a "Public" checkbox property are
+  // hidden even when accessed directly by page ID (the site map only guards
+  // slug URLs, the sitemap, and the RSS feed)
+  const blockKeys = Object.keys(recordMap?.block || {})
+  const block = getBlockValue(recordMap?.block?.[blockKeys[0]])
+  if (
+    block &&
+    !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
+  ) {
+    return {
+      error: {
+        message: `Not found "${rawPageId}"`,
+        statusCode: 404
+      }
+    }
   }
 
   const props = { site, recordMap, pageId }
